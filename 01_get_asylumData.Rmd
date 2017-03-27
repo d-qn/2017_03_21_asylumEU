@@ -1,0 +1,43 @@
+---
+title: ""
+author: "Duc-Quang Nguyen | swissinfo.ch"
+date: " 2017"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    theme: simplex
+---
+
+Forcats: https://blog.exploratory.io/why-factor-is-one-of-the-most-amazing-things-in-r-e967fe27d292
+http://stackoverflow.com/questions/36066931/rotate-d3-parset-visualization-90-degrees-make-horizontal-instead-of-vertical
+
+
+```{r setup, include=FALSE}
+
+data.file.full <- "data/yearlyAsylum_eurostat_full.csv"
+data.file.2016 <- "data/yearlyAsylum_eurostat_2016.csv"
+data.sub.file <- "input/yearlyAsylum_eurostat_2016_aggregated.csv"
+
+library(readr)
+library(tidyr)
+library(dplyr)
+library(magrittr)
+library(countrycode)
+library(ggplot2)
+library(scales)
+library(swiMap)
+library(swiTheme)
+library(eurostat)
+
+```
+
+```{r get data}
+  # get asylum request
+  dat <- get_eurostat('migr_asyappctza', time_format = "raw", cache = F)
+  data <- cbind(label_eurostat(dat), iso2 = dat$geo)  
+  data$time <- as.numeric(data$time)
+  write.csv(data, file = data.file.full, row.names = F)
+  write.csv(data %>% filter(time == 2016), file = data.file.2016, row.names = F)
+```  
+

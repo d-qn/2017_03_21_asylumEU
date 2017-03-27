@@ -1,0 +1,151 @@
+---
+title: ""
+author: "Duc-Quang Nguyen | swissinfo.ch"
+date: " 2017"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    theme: simplex
+---
+
+
+
+```{r setup, include=FALSE}
+downloadData <- F
+
+data.file.full <- "data/yearlyAsylum_eurostat_full.csv"
+data.file <- "data/asylumEU_2016_bySocioEconomic.csv"
+data.2016DW <- "input/asylumEU_2016_bySocioEconomic.csv"
+data.changeDW <- "input/asylumEU_2016vs2015.csv"
+
+library(readr)
+library(tidyr)
+library(dplyr)
+library(magrittr)
+library(countrycode)
+library(ggplot2)
+library(scales)
+library(swiMap)
+library(swiTheme)
+library(forcats)
+
+### Getting data in packages
+library(WDI)
+library(eurostat)
+```
+
+```{r load data, include=F}
+if(downloadData) {
+  data.read <- read.csv(data.file.full) %>% 
+    filter(sex == "Total", age == "Total", asyl_app == "First time applicant") %>%
+    select(-sex, -age, -asyl_app, -unit)
+  
+  ## get eurostat pop
+  myEurostat <- function(tb) {
+    dat <- get_eurostat(tb, time_format = "raw", cache = F)
+    dat <- cbind(label_eurostat(dat), iso2 = dat$geo)  
+    dat$time <- as.numeric(dat$time)
+    colnames(dat)[1] <- 'indicator'
+    dat
+  }
+  pop <- myEurostat('tps00001')
+  
+  pop <- pop %>% filter(time == max(pop$time), 
+                        iso2 %in% as.character(unique(data.read$iso2))) %>%
+    select(one_of(c('geo','values', 'iso2')))
+  
+  ## get gdp per capita world bank
+  isoES2WB <- structure(as.character(unique(data.read$iso2)), 
+                        names = as.character(unique(data.read$iso2)))
+  
+  # EL and UK are not used by the WB!
+  isoES2WB[which(isoES2WB == 'EL')] <- 'GR'
+  isoES2WB[which(isoES2WB == 'UK')] <- 'GB'
+  
+  # GDP per capita, PPP (current international $) http://data.worldbank.org/indicator/NY.GDP.PCAP.PP.CD
+  getwbData <- function (ind, countries = isoES2WB) {
+    indicator <- WDI(indicator = ind, country = countries, start = 2013, end = 2016)
+    colnames(indicator)[3] <- 'gdpPerCapita'
+    indicator %>% filter(!is.na(gdpPerCapita)) %>%
+      arrange(year) %>% group_by(iso2c, country) %>%
+      summarise(gdpPerCapita = last(gdpPerCapita)) %>% ungroup()
+  }
+  gdp <- getwbData('NY.GDP.PCAP.PP.CD', isoES2WB)  
+
+  # combine datasets
+  pop %<>% rename(pop = values) %>% select(-geo)
+  
+  gdp$iso2c <-  case_when(
+    gdp$iso2c == 'GR' ~ 'EL', 
+    gdp$iso2c == 'GB' ~ 'UK',
+    TRUE ~ as.character(gdp$iso2c)
+  )
+  gdp %<>% select(-country)
+  
+  asyl <- data.read %>% filter(time == max(data.read$time), citizen == "Total") %>% select(-time, -citizen)
+  
+  asyl <- right_join(asyl, pop)
+  asyl <- right_join(asyl, gdp %>% rename(iso2 = iso2c))
+  
+  write.csv(asyl, file = data.file, row.names = F)
+} else {
+  asyl <- read.csv(data.file)
+}
+
+```
+
+
+## Changes asyslum 2016 vs 2015
+
+```{r 2016 vs 2015, results = "asis"}
+data.read <- read.csv(data.file.full) %>% 
+  filter(sex == "Total", age == "Total", asyl_app == "First time applicant") %>%
+  select(-sex, -age, -asyl_app, -unit)
+
+dat <- data.read %>% filter(time %in% c(max(data.read$time), max(data.read$time)-1), citizen == "Total") %>% select(-citizen)
+dat %<>% spread(time, values)
+
+dat$absDiff <- dat$`2016` - dat$`2015`
+dat$pcChange <- round((dat$absDiff / dat$`2015`) * 100)
+dat %<>% arrange(desc(abs(absDiff)), desc(abs(pcChange)))
+cat("### First time asylum applicant - country of destinations changes 2016 vs 2015", "\n")
+knitr::kable(dat)
+
+
+
+ddd <- data.read %>% filter(time %in% c(max(data.read$time), max(data.read$time)-1), iso2 == "TOTAL", !citizen %in% c('Extra-EU-28', 'Total')) %>% select(-iso2, -geo)
+ddd %<>% spread(time, values)
+ddd$absDiff <- ddd$`2016` - ddd$`2015`
+ddd$pcChange <- round((ddd$absDiff / ddd$`2015`) * 100)
+ddd %<>% arrange(desc(`absDiff`))
+cat("### First time asylum applicant - country of origins 2016 vs 2015",  "\n")
+knitr::kable(ddd %>% filter(`2016` >= 5000))
+
+
+```
+
+
+```{r compute per capita & per GDP asylum figures, include = F}
+asyl %<>% select(iso2, geo, values, pop, gdpPerCapita) %>%
+  rename(asylumApplication = values)
+
+asyl$asylByPop <- round((asyl$asylumApplication / asyl$pop) * 10^6)
+asyl$asylByGDP <- round((asyl$asylumApplication / asyl$gdpPerCapita) * 10^3)
+
+asyl$iso2 <-  case_when(
+  asyl$iso2 == 'EL' ~ 'GR', 
+  asyl$iso2 == 'UK' ~ 'GB',
+  TRUE ~ as.character(asyl$iso2)
+)
+
+asyl <- left_join(countryTranslation(as.character(asyl$iso2),  c("EN", "DE", "FR", "IT", "ES", "PT","RU", "ZH", "JA","AR")) %>% rename(iso2 = code), asyl %>% select(-geo))
+asyl <- left_join(asyl, dat %>% select(iso2, absDiff))
+write.csv(asyl %>% select(-iso2, -pop, -gdpPerCapita), file = data.2016DW, row.names = F) 
+
+```
+
+
+
+
+
