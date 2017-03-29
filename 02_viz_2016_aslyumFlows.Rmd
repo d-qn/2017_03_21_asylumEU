@@ -1,5 +1,5 @@
 ---
-title: ""
+title: "Asylum flows"
 author: "Duc-Quang Nguyen | swissinfo.ch"
 date: " 2017"
 output: 
@@ -9,13 +9,66 @@ output:
     theme: simplex
 ---
 
-Forcats: https://blog.exploratory.io/why-factor-is-one-of-the-most-amazing-things-in-r-e967fe27d292
-http://stackoverflow.com/questions/36066931/rotate-d3-parset-visualization-90-degrees-make-horizontal-instead-of-vertical
+[d3 changes used for horizontal parset](http://stackoverflow.com/questions/36066931/rotate-d3-parset-visualization-90-degrees-make-horizontal-instead-of-vertical)
 
+## Notes
+
+* [leMonde](http://www.lemonde.fr/societe/article/2017/03/16/plus-de-1-2-million-de-demandes-d-asile-dans-l-union-europeenne-en-2016_5095834_3224.html)
+  * L’année 2016 a été marquée par une chute considérable du nombre d’arrivées de migrants sur les côtes grecques, après la conclusion, en mars, d’un pacte migratoire de l’Union européenne avec la Turquie, pour freiner les traversées de la mer Egée. Selon les chiffres de l’Organisation internationale pour les migrations (OIM), il y a ainsi eu environ 363 000 arrivées en Europe par la mer en 2016, contre plus d’un million en 2015.
+En savoir plus sur http://www.lemonde.fr/societe/article/2017/03/16/plus-de-1-2-million-de-demandes-d-asile-dans-l-union-europeenne-en-2016_5095834_3224.html#uVJrc0Zqx8uCTGUT.99
+  
+* [Pew Asylum](http://www.pewresearch.org/fact-tank/2017/03/15/european-asylum-applications-remained-near-record-levels-in-2016/)
+  * The monthly count of new asylum applications remained around 100,000 for most of 2016, even though the number of new refugees entering the EU via Greece dropped sharply after a March 2016 agreement that saw the EU and Turkey take measures to deter migration across the Eastern Mediterranean.
+  * There are several possible reasons for the absence of a corresponding decrease in new asylum applications with the decline in refugee flows. The first is a lag between the times when refugees arrived in Europe and when they applied for asylum. The German Interior Ministry, for example, states that many asylum seekers who arrived in Germany during 2015 did not file for asylum until 2016.
+
+* [Economist](http://www.economist.com/news/special-report/21719191-they-are-less-keen-refugees-outside-most-eu-countries-are-happy-welcome-other)
+  * the civil war in Syria and strife in Afghanistan and Iraq
+  * The number of asylum-seekers has since come down (see chart), mainly thanks to a bilateral deal struck in early 2016 under which Turkey promised to stop would-be migrants from crossing into Greece. In exchange Turkey received money, a promise of visa-free access for Turks and a fair wind for its EU membership application. At a time when the EU was also condemning the Turkish government for its democratic shortcomings, this deal was widely seen as hypocritical. Yet an even bigger concern was, and is, that Turkey’s mercurial president, Recep Tayyip Erdogan, could tear up the agreement at any time.
+
+
+## Texte
+
+
+
+
+Les demandes d'asile 2016 en Europe, cf 2015 l'engouement en moins. 
+
+En 2015, l'Europe avait atteint le plus grand nombre de demandes d'asile, avec plus de 1,3 million de primo-demandeurs d’asile enregistrés. Durant l'année dernière, les demandes d'asile ont connu une légere diminution par rapport à 2015, mais représentent toujours plus du double des demandes de 2014. Les points clefs en graphiques des statistiques européennes 2016 de l'asile. 
+
+
+Plus de 1,23 million de demandes d’asile ont été enregistrées dans les pays de l’Union européenne (UE) et de l'AELE (Suisse, Norvège et Islande) en 2016, soit un nombre proche du record de l’année précédente. Les Syriens, Afghans et Irakiens sont restés les trois principales nationalités sollicitant une protection internationale. A eux seuls, les ressortissants de ces trois pays minés par les conflits représentaient plus de la moitié des primo-demandeurs d’asile.
+
+https://interactive.swissinfo.ch/2017_03_27_asylumEU/asylumEurope_flows_2016_FR.html
+
+Les principales différences par rapport à 2015 concernant l'origine des demandeurs d'asile:
+* Iran et Nigeria: Augmentation de plus de 50% de primo-demandeurs d’asile de ces pays. Pour rappel, Le Nigeria est en guerre avec le groupe islamique terroriste Boko Haram depuis 2009. 
+* Russie: La Russie fait son entrée dans le top 9 des principales nationalités d'asile en 2016.
+* Kosovo: En suisse et en Allemagne. Migrants économiques. Procédure accélérées aucune chance et exécution des renvois
+
+
+
+En ce qui concerne les pays de destination des demandes d'asile 
+* Allemagne: Arrivées 2015, demandes plus tard en 2016
+* Suède Fermeture des frontières et durcit ses conditions d'acceuil -85%
+* La Hongrie, deuxième en nombre de demandes d'asile en 2015 a enregisté baisse de 85% de demandes d'asile (-133 milles). En cause, les différente mesures ouvertement anti-migrants décretées par le gouvernement nationaliste de Viktor Orban: la construction d'une cloture de barbelés le long de sa frontière avec la Serbie et la Croatie  (175 km de long), le placement des migrants dans des centre de détention et les renvois forcés. La Hongrie demeure un pays de transit. Sur toutes les demandes en 2016, un peu plus d'1% ont reçu une réponse positive. 
+* La mise en place de centres d'enregistrements (hot-spots) de migrants financés par l'Union européene en Grèce a fait explosé le nombre de demandes d'asile déposées en Grèce, une augmentation de plus de 339% des demandes par rapport à 2015. Cette augmentation reflète surtout l'obligation d'enregistrer les demandeurs d'asile dans ces hot-spots. La majorité de ces demandeures d'asile ne font que transiter par la Grèce. 
+* Suisse
+
+A la fin de 2016, il y a avait encore plus d'un million de demandes d'asile en instance 
+
+
+
+
+## Related
+
+* http://www.swissinfo.ch/fre/migration-en-2016_recul-de-près-d-un-tiers-des-demandes-d-asile-en-suisse-/42892740
+* http://www.swissinfo.ch/fre/politique-migratoire_la-suisse-trop-rigoureuse-dans-l-application-des-accords-de-dublin-/42977544
+* http://www.swissinfo.ch/fre/série-migration--partie-3-_sommes-nous-vraiment-confrontés-à-une-crise-migratoire-sans-précédent-/42463826
 
 ```{r setup, include=FALSE}
-wrangleAggregate <- F
+wrangleAggregate <- T
 
+translation.file <- "input/asylum flows Europe 2016 - translation_asylumFlowsEU.csv"
 data.file.2016 <- "data/yearlyAsylum_eurostat_2016.csv"
 data.sub.file <- "input/yearlyAsylum_eurostat_2016_aggregated.csv"
 
@@ -28,12 +81,6 @@ library(ggplot2)
 library(scales)
 library(swiMap)
 library(swiTheme)
-library(forcats)
-
-### Interactive 
-# library(htmltools)
-# library(swiRcharts)
-# library(rCharts)
 
 ```
 
@@ -66,7 +113,6 @@ if(wrangleAggregate) {
   sumByCit <- dat %>% group_by(citizen) %>% dplyr::summarise(sumByCit = sum(tot, na.rm = T)) %>% ungroup() %>% arrange(desc(sumByCit))
   cit.top <- sumByCit %>% select(citizen) %>% head(ntop) %>% unlist(use.names = F) %>% as.character()
   
-  
   ### Merge not top countries
   df <- dat
   df$iso2 <- ifelse(as.character(df$iso2) %in% iso2.top, as.character(df$iso2), 'other')
@@ -97,6 +143,8 @@ if(wrangleAggregate) {
 } else {
   df <- read.csv(file = data.sub.file)    
 }
+# compute the sum asylum application
+sum(df$values)
 
 ```
 
@@ -106,44 +154,74 @@ if(wrangleAggregate) {
 library(parsetR)
 library(swiRcharts)
 library(htmlwidgets)
+library(htmltools)
+
+txt <- loadTranslation(translation.file)
+
+# df$citizen <- factor(df$citizen, levels = df %>% group_by(citizen) %>% dplyr::summarise(tot = sum(values)) %>% arrange(tot) %>% select(citizen) %>% unlist(use.names = F))
+# df$geo <- factor(df$geo, levels = df %>% group_by(geo) %>% dplyr::summarise(tot = sum(values)) %>% arrange(tot) %>% select(geo) %>% unlist(use.names = F))
+
 ps.chart <- parset(select(df, citizen, geo, values),
                    dimensions = c('citizen', 'geo'),
                    # use some JavaScript to inform parset that Freq has the value
                    # http://www.buildingwidgets.com/blog/2015/9/17/week-37-parsetr
                    value = htmlwidgets::JS("function(d){return d.values}"),
-                   tension = 0.7, width = "100%", height = 500,
+                   tension = 0.5, width = "100%", height = 540,
                    spacing = 57
 )
 
+
+for (lang in colnames(txt)) {
+  dd <- df %>% select(-iso2)
+  
+  # get tranlsations
+  dd$from <- txt[paste0("code.", gsub(" ", "", dd$citizen)), lang]
+  dd$to   <- txt[paste0("code.", gsub(" ", "", dd$geo)), lang]
+  
+  ps.chart <- parset(select(dd, from, to, values),
+                   dimensions = c('from', 'to'),
+                   # use some JavaScript to inform parset that Freq has the value
+                   # http://www.buildingwidgets.com/blog/2015/9/17/week-37-parsetr
+                   value = htmlwidgets::JS("function(d){return d.values}"),
+                   tension = 0.5, width = "100%", height = 550,
+                   spacing = 55)
+  
   # overwite default padding
-  ps.chart$sizingPolicy$padding <- 4
-  #ps.chart$sizingPolicy$defaultHeight <- "100%"
-  
-  
-  saveWidget(ps.chart, file = "asylum_parsetH.html", selfcontained = FALSE, libdir = "js")
+  ps.chart$sizingPolicy$padding <- 0
+  saveWidget(ps.chart, file = "asylum_parsetH_tmp.html", selfcontained = FALSE, libdir = "js")
 
-  swi_widget("asylum_parsetH.html", "asylum_parsetSankifed.html"
-  #  h2 = txt["title",lang],
-  #  descr = txt["description",lang],
-  #  h3 = paste0(txt["subtitle", lang]),
-    # source = paste0(txt["source",lang], ": ",
-    #   htmlLink("http://ec.europa.eu/eurostat/en/web/products-datasets/-/MIGR_ASYAPPCTZM",
-    #   txt["eurostat",lang])),
-    # author = paste0(txt["credit",lang], ": ",
-    #   htmlLink("https://github.com/timelyportfolio/parsetR", "parsetR"), " | ",
-    #   htmlLink("http://www.swissinfo.ch", "swissinfo.ch")),
-    # footer = paste0("<strong>",
-    #   txt["footer.title",lang], "</strong><br>", txt["footer",lang])
+  swi_widget("asylum_parsetH_tmp.html", paste0("asylumEurope_flows_2016_", lang, ".html"),
+             h2 = HTML(txt["title",lang]),
+             descr = HTML(paste0(txt["descr",lang], '&nbsp; <img src="Interactive_icon.svg.png" width="11" align="top">')),
+             h3 = paste0(txt["h3", lang]),
+             source = paste0(
+               txt["source",lang], ": ",
+               htmlLink("http://appsso.eurostat.ec.europa.eu/nui/show.do?dataset=migr_asyappctza&lang=en",
+               txt["eurostat",lang])), 
+             author = paste0(txt["credit",lang], ": ",
+               htmlLink("https://github.com/timelyportfolio/parsetR",
+               "parsetR"), " | ",
+               htmlLink("https://twitter.com/duc_qn", "@duc_qn"), " | ",
+               htmlLink("http://www.swissinfo.ch", "swissinfo.ch")),
+             footer = paste0("<strong>",
+             txt["footer.title",lang], "</strong><br>", txt["footer",lang])
   )
-
+  
   #Make it horizontal!
   ori.file <- list.files("js/d3-parsets-1.2.4", "d3.parsets.min.js", full.names = T)
   file.copy(from = list.files(system.file("extdata", package="swiRcharts"),
-       "d3.parsets_horizontal.js", full.names = T), ori.file, overwrite = T)
+                              "d3.parsets_horizontal.js", full.names = T), ori.file, overwrite = T)
   
+  file.copy(from = list.files(system.file("extdata", package="swiRcharts"),
+                              "d3.parsets_horizonal_rtl.min.js", full.names = T), "js/d3-parsets-1.2.4", overwrite = T)
   
   ori.file <- list.files("js/parset-binding-0.0.1", "parset.js", full.names = T)
   file.copy(from = list.files(system.file("extdata", package="swiRcharts"),
-       "parset_horizontal.js", full.names = T), ori.file, overwrite = T)
+                              "parset_horizontal.js", full.names = T), ori.file, overwrite = T)
+  
+  file.copy(from = list.files(system.file("extdata", package="swiRcharts"),
+                              "parset_horizontal.js", full.names = T), ori.file, overwrite = T)
+}
+
   
 ```

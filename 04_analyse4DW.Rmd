@@ -1,18 +1,58 @@
 ---
-title: ""
+title: "Asylum EU + EFTA 2016"
 author: "Duc-Quang Nguyen | swissinfo.ch"
 date: " 2017"
 output: 
   html_document:
-    toc: true
+    toc: false
     toc_depth: 3
     theme: simplex
 ---
+# Asylum EU + EFTA 2016
 
+
+### Related
+
+* [The economist](http://www.economist.com/news/special-report/21719191-they-are-less-keen-refugees-outside-most-eu-countries-are-happy-welcome-other)
+* [Hungary](http://www.independent.co.uk/news/world/europe/hungary-parliament-asylum-seekers-detain-law-approve-refugees-immigration-crisis-arrests-border-a7615486.html)
+* [Greece +300%](http://greece.greekreporter.com/2017/03/16/first-time-asylum-applicants-in-greece-increase-339-in-2016/)
+* [General EU asylum figures](http://www.independent.com.mt/articles/2017-03-18/local-news/EU-1-2-million-first-time-asylum-seekers-registered-in-2016-6736171717)
+* [European Asylum Support Office report](https://www.easo.europa.eu/sites/default/files/public/Latest%20Asylum%20Trends%20July%20-%20final.pdf)
+
+### Notes 
+
+## Pays de destination
+* -85% demande d'asile vers la Hongrie et la Suède en 2016 vs 2015
+* Allemagne +63%
+* Grèce +339%
+* Suisse -32%
+
+## Pays d'origine
+* Russie +24% et dans le top 9 pays d'origine
+* Nigeria et Iran +50%
+* Turquie +129%  
+* Kosovo -89%
+
+
+Around 30% of first time asylum seekers were Syrians, Eurostat said.
+
+At the end of 2016, there were a million pending asylum applications.
+
+
+http://www.swissinfo.ch/fre/rétrospective_2015--la-vague-migratoire-atteint-l-europe/41837968
+
+
+### Graphics
+
+* [DW general asylum figures in Europe](https://datawrapper.dwcdn.net/yBrs7/1/)
+* [DW asylum figures in Europe, split by origin](https://datawrapper.dwcdn.net/e9Kzk/1/)
+* [DW asylum 2016](https://datawrapper.dwcdn.net/f0asm/2/)
+* [Sankey, asylum flows](https://interactive.swissinfo.ch/2017_03_27_asylumEU/asylum_parsetSankifed.html)
 
 
 ```{r setup, include=FALSE}
 downloadData <- F
+downloadMonthlyData <- F
 
 data.file.full <- "data/yearlyAsylum_eurostat_full.csv"
 data.file <- "data/asylumEU_2016_bySocioEconomic.csv"
@@ -145,6 +185,41 @@ write.csv(asyl %>% select(-iso2, -pop, -gdpPerCapita), file = data.2016DW, row.n
 
 ```
 
+
+```{r monthly asylum 2016, fig.height=17, fig.width=11}
+if(downloadMonthlyData) {
+  mdat <- get_eurostat("migr_asyappctzm", time_format = "raw", cache = F)
+  mdat <- cbind(label_eurostat(mdat), iso2 = mdat$geo)
+  
+  eurotime2date(mdat$time)
+  # transform dates efficiently!
+  times <- unique(mdat$time)
+  library(timeDate)
+  times <- structure(as.Date(timeLastDayInMonth(as.Date(paste0(gsub("M", "-",times), "-01"), "%Y-%m-%d"))), names = times)
+  #times <- structure(eurostat:::eurotime2date(x = times, last = FALSE), names = as.character(times))
+  mdat$time <- times[match(mdat$time, names(times))]
+  
+  # subset columns - get First time applicant and not all 'Asylum applicant'!
+  mdat %<>% filter(asyl_app == 'First time applicant', sex == 'Total', age == 'Total') %>%
+    select(one_of(c('citizen', 'geo', 'time', 'values', 'iso2')))
+  
+  # subset the data for year 2015
+  mdat %<>% filter(time >= as.Date("2016-01-01"), values != 0)
+  
+  write.csv(mdat, file = "data/monthlyAsylumSince2016.csv", row.names = F)
+} else {
+  mdat <- read.csv("data/monthlyAsylumSince2016.csv")
+}
+
+mdd <- mdat %>% filter(citizen == "Total") %>% select(-citizen)
+mdd$geo <- factor(mdd$geo, levels = mdd %>% group_by(geo) %>% summarise(tot = sum(values)) %>% ungroup %>% arrange(desc(tot)) %>% select(geo) %>% unlist(use.names = F))
+mdd$time <- as.Date(as.character(mdd$time), "%Y-%m-%d")
+ggplot(data = mdd) + geom_area(aes(x = time, y = values, group = geo)) + facet_wrap(~ geo, ncol = 4, scales = "free_y") + swi_theme() +
+  theme(axis.text.x = element_text(angle = 90, size = 9)) + scale_x_date(labels = date_format("%m %Y"), breaks = scales::pretty_breaks(n = 12)) + 
+  ggtitle("Monthly asylum requests since 2016")
+
+
+```
 
 
 

@@ -1,15 +1,17 @@
-body, h1, h2, h3, h4, h5, h6, .descr, td {
-   font-family: 'Open Sans', sans-serif;
-   background-color: white;
-   font-size: 0.9em;
+@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700&subset=cyrillic-ext');
+
+body, h1, h2, h3, h4, h5, h6, .descr {
+   font-family: 'Open Sans Condensed', sans-serif;
+   font-size: 0.98em;
+   letter-spacing: .01em;
 }
 
 #cite {
-    font-size: 8px;
+    font-size: 9.5px;
     color: #B8B8B8;
     text-align: right;
-    margin-top:5px;
-    margin-right:5px;
+    margin-top:7px;
+    margin-right:7px;
     padding-bottom: 3px;
 }
 #cite a { text-decoration: none; color: #821122; }
@@ -25,6 +27,10 @@ body, h1, h2, h3, h4, h5, h6, .descr, td {
 
 .descr {
   color: #707070;
+  margin-bottom: 3px;  
+  margin-left: 1%;
+  line-height: 1.1em;
+  margin-right: 3%;
 }
 
 h1 {
@@ -32,15 +38,22 @@ h1 {
 }
 
 h2 {
-   font-size:1.5em;
-   font-weight: lighter;
-   line-height: 80%;
+   font-size:1.3em;
+   line-height: 1.05em;
+   margin-bottom: 7px;
+   margin-top: 7px;
+   margin-left: 1%;
+   margin-right: 10px;
 }
 
 h3 {
-   font-size:1.2em;
+   font-size:1em;
    color: #696969;
-   line-height: 80%;
+   line-height: 1.1em;
+   margin-top: 8px;
+   margin-bottom: 6px;  
+   margin-left: 1%;
+   margin-right: 10px;
 }
 
 h4 {
@@ -55,21 +68,8 @@ h6 {
    font-size:0.8em;
 }
 
-
 a:visited {
    color: rgb(50%, 0%, 50%);
-}
-
-td, th {
-  border: none;
-  font-size:0.95em;
-}
-
-blockquote {
-   color:#666666;
-   margin:0;
-   padding-left: 1em;
-   border-left: 0.5em #EEE solid;
 }
 
 body {
@@ -93,7 +93,7 @@ a, a:visited {
 .parset .dimension > rect { display: none; }
 .parset .category:hover rect { fill-opacity: .5; }
 .parset .dimension:hover > rect { fill-opacity: .5; }
-.parset .ribbon path { stroke-opacity: 0; fill-opacity: .5; }
+.parset .ribbon path { stroke-opacity: 0; fill-opacity: .55; }
 .parset .ribbon path.active { fill-opacity: .9; }
 .parset .ribbon-mouse path { fill-opacity: 0; }
 
@@ -105,13 +105,13 @@ a, a:visited {
 .parset .category-5 { fill: #996699; stroke: #996699; }
 .parset .category-6 { fill: #ac673e; stroke: #ac673e; }
 .parset .category-7 { fill: #3a9736; stroke: #3a9736; }
-.parset .category-8 { fill: #333366; stroke: #333366; }
-.parset .category-9 { fill: #999966; stroke: #999966; }
-.parset .category-10 { fill: #193442; stroke: #193442; }
+.parset .category-8 { fill: #7e827a; stroke: #7e827a; }
+.parset .category-9 { fill: #193442; stroke: #193442; }
+.parset .category-10 { fill: #999966; stroke: #999966; }
 
 .parsets.tooltip {
   background-color: rgba(242, 242, 242, .6);
   position: absolute;
-  padding: 3px;
+  padding: 2px;
   font-size:0.9em;
 }
